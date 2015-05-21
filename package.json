@@ -4,7 +4,9 @@
   "description": "A webapp that will stop the rain for you.",
   "main": "app.js",
   "scripts": {
-    "start": "cd src/backend && node app.js"
+    "start": "cd src/backend && node app.js",
+    "frontend:build": "NODE_ENV=production browserify -t [ reactify --es6 ] src/webapp/main.js | uglifyjs > src/webapp/public/app.min.js",
+    "frontend:watch": "watchify -v -d -t [ reactify --es6 ] src/webapp/main.js -o src/webapp/public/app.js"
   },
   "author": "selbekk <selbeezy@gmail.com>",
   "license": "ISC",
