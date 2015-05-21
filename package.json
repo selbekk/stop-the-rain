@@ -20,7 +20,7 @@
     "gulp": "~3.8.5",
     "gulp-notify": "~1.4.0",
     "gulp-util": "~2.2.19",
-    "reactify": "~0.13.1",
+    "reactify": "~0.13.2",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.2"
   }

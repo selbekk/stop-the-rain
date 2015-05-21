@@ -7,14 +7,14 @@ var watchify = require('watchify');
 var notify = require("gulp-notify");
 
 var scriptsDir = './src/webapp';
-var buildDir = './build';
+var buildDir = './src/webapp/build';
 
 
 function handleErrors() {
 	var args = Array.prototype.slice.call(arguments);
 	notify.onError({
 		title: "Compile Error",
-		message: "<%= error.message %>"
+		message: "<%= error %>"
 	}).apply(this, args);
 	this.emit('end'); // Keep gulp from hanging on this task
 }
