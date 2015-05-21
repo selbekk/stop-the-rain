@@ -4,8 +4,11 @@
   "description": "A webapp that will stop the rain for you.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node src/backend/app.js"
   },
   "author": "selbekk <selbeezy@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
 }
