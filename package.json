@@ -9,6 +9,9 @@
     "frontend:watch": "watchify -v -d -t [ reactify --es6 ] src/webapp/main.js -o src/webapp/public/app.js"
   },
   "author": "selbekk <selbeezy@gmail.com>",
+  "contributors": [
+    "helleroy <helleroy@gmail.com>"
+  ],
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.12.4",
