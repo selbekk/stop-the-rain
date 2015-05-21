@@ -1,3 +1,3 @@
 exports.getWeather = function(position, callback) {
-    // TODO: Implement
+    callback(null, {});
 };
