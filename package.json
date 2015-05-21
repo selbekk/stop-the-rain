@@ -9,6 +9,17 @@
   "author": "selbekk <selbeezy@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "envify": "~1.2.1",
+    "browserify": "~4.2.0",
+    "gulp": "~3.8.5",
+    "gulp-notify": "~1.4.0",
+    "gulp-util": "~2.2.19",
+    "reactify": "~0.13.1",
+    "vinyl-source-stream": "~0.1.1",
+    "watchify": "~0.10.2"
   }
 }
