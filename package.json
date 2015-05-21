@@ -4,17 +4,19 @@
   "description": "A webapp that will stop the rain for you.",
   "main": "app.js",
   "scripts": {
-    "server": "node src/backend/app.js"
+    "start": "cd src/backend && node app.js"
   },
   "author": "selbekk <selbeezy@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.12.4",
     "express": "^4.12.4",
+    "express-handlebars": "^2.0.1",
     "react": "^0.13.3"
   },
   "devDependencies": {
-    "envify": "~1.2.1",
     "browserify": "~4.2.0",
+    "envify": "~1.2.1",
     "gulp": "~3.8.5",
     "gulp-notify": "~1.4.0",
     "gulp-util": "~2.2.19",

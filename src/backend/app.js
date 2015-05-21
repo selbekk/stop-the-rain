@@ -1,10 +1,22 @@
 var express = require('express'),
+    exphbs  = require('express-handlebars'),
     bodyParser = require('body-parser');
 
 var app = express();
 
+var hbs = exphbs.create({
+    defaultLayout: 'main',
+    
+});
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
 app.use('assets', express.static('webapp/public'));
 app.use(bodyParser.json());
+
+app.get('/', function(req, res, next) {
+    res.render('index');
+});
 
 app.get('/api/check-weather', function(req, res, next) {
     res.json({ raining: true });
