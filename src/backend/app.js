@@ -2,10 +2,14 @@ var express = require('express');
 
 var app = express();
 
-app.use(express.static('webapp/public'));
+app.use('assets', express.static('webapp/public'));
 
-app.get('/', function(req, res, next) {
-    res.json({message: "web app is up and running!"});
+app.get('/api/check-weather', function(req, res, next) {
+    res.json({ isItRaining: true; });
+});
+
+app.get('/api/order-sun', function(req, res, next) {
+    res.status(201).json({eta: '2 days'});
 });
 
 app.listen(4000, function() {
