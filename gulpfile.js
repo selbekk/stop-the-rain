@@ -1,10 +1,15 @@
-var source = require('vinyl-source-stream');
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var browserify = require('browserify');
-var reactify = require('reactify');
-var watchify = require('watchify');
-var notify = require("gulp-notify");
+var browserify = require('browserify'),
+	gulp = require('gulp'),
+	gutil = require('gulp-util'),
+	less = {
+		compile: require('gulp-less'),
+		minify: require('less-plugin-clean-css'),
+		prefix: require('less-plugin-autoprefix')
+	},
+	notify = require("gulp-notify"),
+	reactify = require('reactify'),
+	source = require('vinyl-source-stream'),
+	watchify = require('watchify');
 
 var scriptsDir = './src/webapp';
 var buildDir = './src/webapp/public';
@@ -14,7 +19,6 @@ var handleErrors = notify.onError({
 	message: "<%= error %>"
 });
 
-// Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file, watch) {
 	var props = {entries: [scriptsDir + '/' + file]};
 	var bundler = watch ? watchify(props) : browserify(props);
@@ -27,13 +31,23 @@ function buildScript(file, watch) {
 	}
 	bundler.on('update', function() {
 		rebundle();
-		gutil.log('Rebundle...');
+		gutil.log('Re-bundling...');
 	});
 	return rebundle();
 }
 
+gulp.task('style', function() {
+	gulp.src('src/webapp/less/main.less')
+		.pipe(less.compile({
+			plugins: [
+				new less.minify({ advanced: true }),
+				new less.prefix({ browsers: ["last 2 versions"] })
+			]
+		}))
+		.pipe(gulp.dest('src/webapp/public/'))
+});
 
-gulp.task('build', function() {
+gulp.task('build', ['style'], function() {
 	return buildScript('main.js', false);
 });
 
