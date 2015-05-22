@@ -1,6 +1,6 @@
 var Position = function(opts) {
-    this.lat = parseFloat(opts.lat).toFixed(2);
-    this.lng = parseFloat(opts.lng).toFixed(2);
+    this.lat = parseFloat(opts.lat).toFixed(4);
+    this.lng = parseFloat(opts.lng).toFixed(4);
 }
 
 Position.prototype.isValid = function() {
