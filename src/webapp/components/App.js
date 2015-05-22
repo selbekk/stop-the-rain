@@ -1,11 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var RainIndicator = require('./RainIndicator.js')
 
 module.exports = React.createClass({
     render: function () {
-        return (
-            <h1>HELLO WORLD</h1>
-        )
+        return React.createElement(RainIndicator)
     }
 });
