@@ -12,7 +12,9 @@ exports.getWeather = function(position, callback) {
         console.log('returning a cached version of the weather');
         return callback(null, cached);
     }
+
     console.log('not cached, hitting up the API');
+    
     request(reqUrl, function(err, res, body) {
         if(err || res.statusCode !== 200) {
             console.error('problem fetching data from API', err);
