@@ -1,6 +1,6 @@
 var request = require('request');
 
-var cache = require('./cache');
+var cache = require('./util/cache');
 var log = require('./util/logger');
 
 var url = 'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&APPID=ec7597638cf8f4cfb067e2ed0dc7f2d9';

@@ -2,7 +2,7 @@ var express = require('express'),
     exphbs  = require('express-handlebars'),
     bodyParser = require('body-parser');
 
-var apiResource = require('./api-resource'),
+var apiRouter = require('./api-router'),
     log = require('./util/logger');
 
 var app = express();
@@ -17,8 +17,7 @@ app.get('/', function(req, res, next) {
     res.render('index');
 });
 
-app.get('/api/check-weather', apiResource.getWeather);
-app.get('/api/order-sun', apiResource.orderSun);
+app.use('/api', apiRouter);
 
 app.listen(4000, function() {
     log.info('server launched @ localhost:4000');
