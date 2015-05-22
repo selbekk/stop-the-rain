@@ -1,13 +1,16 @@
 var request = require('request');
 
-var url = 'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&APPID=ec7597638cf8f4cfb067e2ed0dc7f2d9';
+var cache = require('./cache')();
 
-var cache = {};
+var url = 'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&APPID=ec7597638cf8f4cfb067e2ed0dc7f2d9';
 
 exports.getWeather = function(position, callback) {
     var reqUrl = url.replace('{lat}', position.lat).replace('{lon}', position.lng);
-    if(cache[reqUrl]) {
-        return callback(null, cache[reqUrl]);
+
+    var cached = cache.get(position);
+    if(cached) {
+        console.log('returning a cached version of the weather');
+        return callback(null, cached);
     }
 
     request(reqUrl, function(err, res, body) {
@@ -16,8 +19,8 @@ exports.getWeather = function(position, callback) {
             return callback(err);
         }
         var result = JSON.parse(body);
-        cache[reqUrl] = result;
-        
+        cache.put(position, result);
+
         callback(null, result);
     });
 };
