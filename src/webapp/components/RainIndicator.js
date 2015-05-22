@@ -15,7 +15,7 @@ module.exports = React.createClass({
             <div>
                 <h1>Is It Raining?</h1>
 
-                <h2>{this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
+                <h2>{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
             </div>
         )
     }
@@ -31,14 +31,16 @@ function RainIndicatorStore(updateCallback) {
     setInterval(getData(), 60000);
 
     function getData() {
-        var r = new XMLHttpRequest();
-        r.open('GET', '/api/check-weather?lat=59.9127300&lng=10.7460900');
-        r.onreadystatechange = function () {
-            if (r.readyState != 4 || r.status != 200) return;
-            that.state = JSON.parse(r.responseText);
-            updateCallback();
-        };
-        r.send();
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var r = new XMLHttpRequest();
+            r.open('GET', '/api/check-weather?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude);
+            r.onreadystatechange = function () {
+                if (r.readyState != 4 || r.status != 200) return;
+                that.state = JSON.parse(r.responseText);
+                updateCallback();
+            };
+            r.send();
+        });
     }
 
 }
