@@ -18,9 +18,10 @@ module.exports = React.createFactory(
             this.setState(this.store.getState());
         },
         render: function () {
+            var headline = this.state.place.name ? 'Is It Raining in ' + this.state.place.name + '?' : 'Is it raining?';
             var stopRainButton = this.state.isRaining && !this.state.waiting ?
                 <input type="button" className="button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
-            var waitingImage = this.state.waiting ? (
+            var waitingImage = this.state.waiting && this.state.isRaining ? (
                 <div>
                     <p>Contacting weather gods...</p>
                     <img src="/assets/ajax-loader.gif" alt="waiting for the rain to stop"/>
@@ -28,7 +29,7 @@ module.exports = React.createFactory(
 
             return (
                 <div>
-                    <h1>Is It Raining?</h1>
+                    <h1>{headline}</h1>
 
                     <h2>{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
                     {stopRainButton}
@@ -43,6 +44,7 @@ function RainIndicatorStore(updateCallback) {
     this.updateCallback = updateCallback;
     this.state = {
         isRaining: null,
+        place: {name: null},
         waiting: false
     };
 
@@ -50,15 +52,19 @@ function RainIndicatorStore(updateCallback) {
 
     function getData() {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var r = new XMLHttpRequest();
-            r.open('GET', '/api/check-weather?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude);
-            r.onreadystatechange = function () {
-                if (r.readyState != 4 || r.status != 200) return;
-                that.state = JSON.parse(r.responseText);
-                updateCallback();
-            };
-            r.send();
+            callServer(position);
         });
+    }
+
+    function callServer(position) {
+        var r = new XMLHttpRequest();
+        r.open('GET', '/api/check-weather?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude);
+        r.onreadystatechange = function () {
+            if (r.readyState != 4 || r.status != 200) return;
+            that.state = JSON.parse(r.responseText);
+            updateCallback();
+        };
+        r.send();
     }
 
 }
