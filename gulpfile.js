@@ -7,6 +7,7 @@ var browserify = require('browserify'),
 		prefix: require('less-plugin-autoprefix')
 	},
 	notify = require("gulp-notify"),
+	plumber = require('gulp-plumber'),
 	reactify = require('reactify'),
 	source = require('vinyl-source-stream'),
 	watchify = require('watchify');
@@ -37,7 +38,9 @@ function buildScript(file, watch) {
 }
 
 gulp.task('style', function() {
+	gutil.log('compiling LESS files...');
 	gulp.src('src/webapp/less/main.less')
+		.pipe(plumber())
 		.pipe(less.compile({
 			plugins: [
 				new less.minify({ advanced: true }),
@@ -51,6 +54,10 @@ gulp.task('build', ['style'], function() {
 	return buildScript('main.js', false);
 });
 
+gulp.task('watch', function() {
+	gutil.log('watching for changes...');
+	gulp.watch('src/webapp/less/*.less', ['style']);
+})
 
 gulp.task('default', ['build'], function() {
 	return buildScript('main.js', true);
