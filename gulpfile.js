@@ -51,6 +51,10 @@ gulp.task('build', ['style'], function() {
 	return buildScript('main.js', false);
 });
 
+gulp.task('watch', function() {
+	gutil.log('watching for changes...');
+	gulp.watch('src/webapp/less/*.less', ['style']);
+})
 
 gulp.task('default', ['build'], function() {
 	return buildScript('main.js', true);
