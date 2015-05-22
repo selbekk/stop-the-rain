@@ -18,22 +18,21 @@ module.exports = React.createFactory(
             this.setState(this.store.getState());
         },
         render: function () {
-            var headline = this.state.place.name ? 'Is It Raining in ' + this.state.place.name + '?' : 'Is it raining?';
-            var stopRainButton = this.state.isRaining && !this.state.waiting ?
-                <input type="button" className="stop-the-rain-button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
-            var waitingImage = this.state.waiting && this.state.isRaining ? (
-                <div className="waiting">
-                    <p className="waiting-text">Contacting the weather gods...</p>
-                    <img className="waiting-animation" src="/assets/ajax-loader.gif" alt="Waiting for the rain to stop"/>
-                </div>) : null;
+            var headline = this.state.place.name ? 'Is it raining @ ' + this.state.place.name + '?' : 'Is it raining?';
+            var stopRainButton = !this.state.waiting ?
+                <button type="button" className="stop-the-rain-button" onClick={this.stopTheRain}>Stop the rain</button> : null;
+
+            var weatherClasses = 'weather-icon';
+            weatherClasses += this.state.isRaining ? ' mod-rain' : ' mod-sun';
+            weatherClasses += this.state.waiting ? 'is-waiting' : '';
 
             return (
                 <div className="weather">
                     <h1 className="weather-headline">{headline}</h1>
 
                     <h2 className="weather-status">{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
+                    <div className={weatherClasses}></div>
                     {stopRainButton}
-                    {waitingImage}
                 </div>
             )
         }

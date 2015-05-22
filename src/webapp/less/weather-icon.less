@@ -1,0 +1,28 @@
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    background: transparent center center no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.weather-icon.mod-rain {
+    background-image: url(/assets/img/weather-rain-100.png);
+}
+
+.weather-icon.mod-sun {
+    background-image: url(/assets/img/weather-sun-100.png);
+}
+
+.weather-icon.mod-unknown {
+    background-image: url(/assets/img/weather-no-idea-100.png);
+}
+
+.weather-icon.is-waiting {
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
