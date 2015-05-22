@@ -20,18 +20,18 @@ module.exports = React.createFactory(
         render: function () {
             var headline = this.state.place.name ? 'Is It Raining in ' + this.state.place.name + '?' : 'Is it raining?';
             var stopRainButton = this.state.isRaining && !this.state.waiting ?
-                <input type="button" className="button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
+                <input type="button" className="stop-the-rain-button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
             var waitingImage = this.state.waiting && this.state.isRaining ? (
-                <div>
-                    <p>Contacting weather gods...</p>
-                    <img src="/assets/ajax-loader.gif" alt="waiting for the rain to stop"/>
+                <div className="waiting">
+                    <p className="waiting-text">Contacting the weather gods...</p>
+                    <img className="waiting-animation" src="/assets/ajax-loader.gif" alt="Waiting for the rain to stop"/>
                 </div>) : null;
 
             return (
-                <div>
-                    <h1>{headline}</h1>
+                <div className="weather">
+                    <h1 className="weather-headline">{headline}</h1>
 
-                    <h2>{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
+                    <h2 className="weather-status">{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
                     {stopRainButton}
                     {waitingImage}
                 </div>
