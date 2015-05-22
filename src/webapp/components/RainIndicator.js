@@ -19,7 +19,7 @@ module.exports = React.createFactory(
         },
         render: function () {
             var stopRainButton = this.state.isRaining && !this.state.waiting ?
-                <input type="button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
+                <input type="button" className="button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
             var waitingImage = this.state.waiting ? (
                 <div>
                     <p>Contacting weather gods...</p>
