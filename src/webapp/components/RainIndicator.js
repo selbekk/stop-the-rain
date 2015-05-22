@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var _ = require('lodash');
+
 
 module.exports = React.createFactory(
     React.createClass({
@@ -11,12 +13,26 @@ module.exports = React.createFactory(
         update: function () {
             this.setState(this.store.getState());
         },
+        stopTheRain: function () {
+            this.store.update({waiting: true});
+            this.setState(this.store.getState());
+        },
         render: function () {
+            var stopRainButton = this.state.isRaining && !this.state.waiting ?
+                <input type="button" value="Stop the rain!" onClick={this.stopTheRain}/> : null;
+            var waitingImage = this.state.waiting ? (
+                <div>
+                    <p>Contacting weather gods...</p>
+                    <img src="/assets/ajax-loader.gif" alt="waiting for the rain to stop"/>
+                </div>) : null;
+
             return (
                 <div>
                     <h1>Is It Raining?</h1>
 
                     <h2>{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
+                    {stopRainButton}
+                    {waitingImage}
                 </div>
             )
         }
@@ -26,7 +42,8 @@ function RainIndicatorStore(updateCallback) {
     var that = this;
     this.updateCallback = updateCallback;
     this.state = {
-        isRaining: null
+        isRaining: null,
+        waiting: false
     };
 
     setInterval(getData(), 60000);
@@ -48,4 +65,8 @@ function RainIndicatorStore(updateCallback) {
 
 RainIndicatorStore.prototype.getState = function () {
     return this.state;
+};
+
+RainIndicatorStore.prototype.update = function (newState) {
+    _.assign(this.state, newState);
 };

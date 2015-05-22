@@ -19,7 +19,8 @@
     "express-handlebars": "^2.0.1",
     "moment": "^2.10.3",
     "react": "^0.13.3",
-    "request": "^2.55.0"
+    "request": "^2.55.0",
+    "lodash": "^3.9.1"
   },
   "devDependencies": {
     "browserify": "~4.2.0",
