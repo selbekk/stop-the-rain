@@ -12,7 +12,6 @@ exports.getWeather = function(req, res, next) {
 
     dao.getWeather(pos, function(err, result) {
         if(err) {
-            console.error('error while asking for the current weather', err);
             return next();
         }
 
