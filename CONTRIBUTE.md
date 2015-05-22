@@ -8,11 +8,14 @@ with making a difference to this product that is just pure sillyness.
 Send us a pull request, and if you get it accepted, you'll get full commit
 access.
 
-Once you get commit access, please continue creating pull requests and get them
-reviewed by another committer. This way we don't break the build.
+Fix issues and implement new features on feature branches - never directly on
+master.
 
-[@selbekk](https://www.github.com/selbekk) is the deploy guy, so go nag him if
-you want to deploy the master branch to Heroku.
+## Deployments
+
+Master is always deployed whenever it's pushed to, so please make sure you keep
+that branch deployable. Always merge locally and do a test-run before pushing
+changes to master.
 
 ## What's there to do?
 
@@ -21,4 +24,5 @@ something to do, make an issue and do it.
 
 ## Code of conduct
 
-If you're a douche, you'll get banned.
+If you're a douche, you'll get banned. If you're not a douche, you'll not get
+banned.
