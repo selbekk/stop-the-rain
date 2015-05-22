@@ -18,19 +18,19 @@ module.exports = React.createFactory(
             this.setState(this.store.getState());
         },
         render: function () {
-            var headline = this.state.place.name ? 'Is it raining @ ' + this.state.place.name + '?' : 'Is it raining?';
-            var stopRainButton = !this.state.waiting ?
+            var headline = this.state.place.name ? this.state.place.name + ', ' + this.state.place.country: 'Is it raining?';
+            var stopRainButton = this.state.isRaining && !this.state.waiting ?
                 <button type="button" className="stop-the-rain-button" onClick={this.stopTheRain}>Stop the rain</button> : null;
 
             var weatherClasses = 'weather-icon';
-            weatherClasses += this.state.isRaining ? ' mod-rain' : ' mod-sun';
+            weatherClasses += this.state.isRaining === null ? ' mod-unknown': this.state.isRaining ? ' mod-rain' : ' mod-sun';
             weatherClasses += this.state.waiting ? 'is-waiting' : '';
 
             return (
                 <div className="weather">
                     <h1 className="weather-headline">{headline}</h1>
 
-                    <h2 className="weather-status">{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
+                    <h2 className="weather-status">{this.state.isRaining === null ? 'Checking...' : this.state.weather}</h2>
                     <div className={weatherClasses}></div>
                     {stopRainButton}
                 </div>
