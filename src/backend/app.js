@@ -9,6 +9,7 @@ var app = express();
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+app.set('port', process.env.PORT || 4000);
 
 app.use('/assets', express.static('../webapp/public'));
 app.use(bodyParser.json());
@@ -19,6 +20,6 @@ app.get('/', function(req, res, next) {
 
 app.use('/api', apiRouter);
 
-app.listen(4000, function() {
+app.listen(app.get('port'), function() {
     log.info('server launched @ localhost:4000');
 });

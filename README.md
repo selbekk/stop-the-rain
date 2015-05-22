@@ -2,6 +2,8 @@
 
 This is an app that will stop the rain for ya.
 
+Deployed at [stoptherain.herokuapp.com](https://stoptherain.herokuapp.com).
+
 Also, this is very open open source. Ask, and commit access shall be granted.
 It's something we're trying to hack together during the breaks of #webrebels.
 
