@@ -1,7 +1,20 @@
+var _ = require('lodash');
 var dao = require('./weather-dao');
 
 exports.orderSun = function(req, res, next) {
-    res.status(201).json({message: 'order created!'});
+    var pos = { lat: req.query.lat, lng: req.query.lng || req.query.lan };
+    dao.getForecast(pos, function(err, data) {
+        if(err) {
+            return next();
+        }
+
+        var firstNonRainyPeriod = _.find(data.list, function(item) {
+            return item.weather[0].main.toLowerCase().indexOf('rain') === -1;
+        });
+
+        res.status(201).json({eta: firstNonRainyPeriod.dt_txt });
+    });
+
 };
 exports.getWeather = function(req, res, next) {
     var pos = { lat: req.query.lat, lng: req.query.lng || req.query.lan };
