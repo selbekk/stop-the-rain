@@ -9,16 +9,10 @@ var notify = require("gulp-notify");
 var scriptsDir = './src/webapp';
 var buildDir = './src/webapp/build';
 
-
-function handleErrors() {
-	var args = Array.prototype.slice.call(arguments);
-	notify.onError({
-		title: "Compile Error",
-		message: "<%= error %>"
-	}).apply(this, args);
-	this.emit('end'); // Keep gulp from hanging on this task
-}
-
+var handleErrors = notify.onError({
+	title: "Compile Error",
+	message: "<%= error %>"
+});
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file, watch) {
