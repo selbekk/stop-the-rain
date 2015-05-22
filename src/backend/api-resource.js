@@ -1,8 +1,13 @@
 var _ = require('lodash');
 var dao = require('./weather-dao');
+var Position = require('./position');
 
 exports.orderSun = function(req, res, next) {
-    var pos = { lat: req.query.lat, lng: req.query.lng || req.query.lan };
+    var pos = new Position({ lat: req.query.lat, lng: req.query.lng });
+    if(!pos.isValid()) {
+        return res.status(400).json({error: 'You\'re doing it wrong!'});
+    }
+
     dao.getForecast(pos, function(err, data) {
         if(err) {
             return next();
@@ -14,12 +19,12 @@ exports.orderSun = function(req, res, next) {
 
         res.status(201).json({eta: firstNonRainyPeriod.dt_txt });
     });
-
 };
-exports.getWeather = function(req, res, next) {
-    var pos = { lat: req.query.lat, lng: req.query.lng || req.query.lan };
 
-    if(!pos.lat || !pos.lng) {
+exports.getWeather = function(req, res, next) {
+    var pos = new Position({ lat: req.query.lat, lng: req.query.lng });
+
+    if(!pos.isValid()) {
         return res.status(400).json({error: 'you\'re doing it wrong!'});
     }
 
