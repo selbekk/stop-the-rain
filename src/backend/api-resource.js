@@ -4,7 +4,7 @@ exports.orderSun = function(req, res, next) {
     res.status(201).json({message: 'order created!'});
 };
 exports.getWeather = function(req, res, next) {
-    var pos = { lat: req.query.lat, lng: req.query.lng };
+    var pos = { lat: req.query.lat, lng: req.query.lng || req.query.lan };
 
     if(!pos.lat || !pos.lng) {
         return res.status(400).json({error: 'you\'re doing it wrong!'});

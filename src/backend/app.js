@@ -9,7 +9,7 @@ var app = express();
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-app.use('assets', express.static('webapp/public'));
+app.use('/assets', express.static('../webapp/public'));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
