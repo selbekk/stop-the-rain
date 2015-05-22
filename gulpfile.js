@@ -7,7 +7,7 @@ var watchify = require('watchify');
 var notify = require("gulp-notify");
 
 var scriptsDir = './src/webapp';
-var buildDir = './src/webapp/build';
+var buildDir = './src/webapp/public';
 
 var handleErrors = notify.onError({
 	title: "Compile Error",

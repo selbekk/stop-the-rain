@@ -5,7 +5,7 @@ var React = require('react');
 module.exports = React.createClass({
     getInitialState: function () {
         this.store = new RainIndicatorStore(this.update);
-        return store.getState;
+        return this.store.getState();
     },
     update: function () {
         this.setState(this.store.getState());
@@ -28,19 +28,17 @@ function RainIndicatorStore(updateCallback) {
         isRaining: null
     };
 
-    getData();
     setInterval(getData(), 60000);
 
     function getData() {
         var r = new XMLHttpRequest();
-        r.open('GET', '/api/check-weather');
+        r.open('GET', '/api/check-weather?lat=59.9127300&lng=10.7460900');
         r.onreadystatechange = function () {
             if (r.readyState != 4 || r.status != 200) return;
-            alert('Fetched data: ' + r.responseText);
             that.state = JSON.parse(r.responseText);
             updateCallback();
         };
-        r.send('lat=59.9127300&lng=10.7460900');
+        r.send();
     }
 
 }
