@@ -2,24 +2,25 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
-    getInitialState: function () {
-        this.store = new RainIndicatorStore(this.update);
-        return this.store.getState();
-    },
-    update: function () {
-        this.setState(this.store.getState());
-    },
-    render: function () {
-        return (
-            <div>
-                <h1>Is It Raining?</h1>
+module.exports = React.createFactory(
+    React.createClass({
+        getInitialState: function () {
+            this.store = new RainIndicatorStore(this.update);
+            return this.store.getState();
+        },
+        update: function () {
+            this.setState(this.store.getState());
+        },
+        render: function () {
+            return (
+                <div>
+                    <h1>Is It Raining?</h1>
 
-                <h2>{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
-            </div>
-        )
-    }
-});
+                    <h2>{this.state.isRaining === null ? 'NO IDEA' : this.state.isRaining ? 'YES :(' : 'NO! :D'}</h2>
+                </div>
+            )
+        }
+    }));
 
 function RainIndicatorStore(updateCallback) {
     var that = this;

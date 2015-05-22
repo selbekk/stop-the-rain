@@ -3,8 +3,8 @@
 var React = require('react');
 var RainIndicator = require('./RainIndicator.js')
 
-module.exports = React.createClass({
+module.exports = React.createFactory(React.createClass({
     render: function () {
-        return React.createElement(RainIndicator)
+        return <RainIndicator />;
     }
-});
+}));
