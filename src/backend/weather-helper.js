@@ -5,7 +5,7 @@ exports.etaRainStop = function(data){
         return item.weather[0].main.toLowerCase().indexOf('rain') === -1;
     });
 
-    return Date.parse(firstNonRainyPeriod.dt_txt) - Date.now();
+    return firstNonRainyPeriod.dt_txt;
 };
 
 exports.etaRainStart = function(data){
@@ -13,5 +13,5 @@ exports.etaRainStart = function(data){
         return item.weather[0].main.toLowerCase().indexOf('rain') === 1;
     });
 
-    return Date.parse(firstRainPeriod.dt_txt) - Date.now();
+    return firstRainPeriod.dt_txt;
 };
