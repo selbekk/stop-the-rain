@@ -3,7 +3,3 @@ node_modules/
 *.log
 
 .DS_Store
-
-src/webapp/public/*.css
-src/webapp/public/*.js
-src/webapp/templates/index.js
