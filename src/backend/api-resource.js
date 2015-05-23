@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var dao = require('./weather-dao');
 var Position = require('./position');
+var WeatherHelper = require('./weather-helper');
 
 exports.orderSun = function(req, res, next) {
     var pos = new Position({ lat: req.query.lat, lng: req.query.lng });
@@ -12,11 +13,22 @@ exports.orderSun = function(req, res, next) {
             return next();
         }
 
-        var firstNonRainyPeriod = _.find(data.list, function(item) {
-            return item.weather[0].main.toLowerCase().indexOf('rain') === -1;
-        });
+        res.status(201).json({eta: WeatherHelper.etaRainStop(data) });
+    });
+};
 
-        res.status(201).json({eta: firstNonRainyPeriod.dt_txt });
+exports.timeUntilRain = function(req, res, next){
+    var pos = new Position({ lat: req.query.lat, lng: req.query.lng });
+    if(!pos.isValid()) {
+        return res.status(400).json({error: 'You\'re doing it wrong!'});
+    }
+
+    dao.getForecast(pos, function(err, data) {
+        if(err) {
+            return next();
+        }
+
+        res.status(201).json({eta: WeatherHelper.etaRainStart(data) });
     });
 };
 
