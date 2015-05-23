@@ -7,7 +7,6 @@ exports.orderSun = function(req, res, next) {
     if(!pos.isValid()) {
         return res.status(400).json({error: 'You\'re doing it wrong!'});
     }
-
     dao.getForecast(pos, function(err, data) {
         if(err) {
             return next();
