@@ -1,0 +1,7 @@
+<div class="weather">
+    <h1 class="weather-headline">{{ headline }}</h1>
+    <h2 class="weather-status {{ weather }}"></h2>
+    {{#if isRaining }}
+        <button type="button" className="stop-the-rain-button">Stop the rain</button>
+    {{/if}}
+</div>

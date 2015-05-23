@@ -4,13 +4,13 @@
   "description": "A webapp that will stop the rain for you.",
   "main": "app.js",
   "scripts": {
-    "start": "cd src/backend && node app.js",
-    "frontend:build": "NODE_ENV=production browserify -t [ reactify --es6 ] src/webapp/main.js | uglifyjs > src/webapp/public/app.min.js",
-    "frontend:watch": "watchify -v -d -t [ reactify --es6 ] src/webapp/main.js -o src/webapp/public/app.js"
+    "build": "gulp",
+    "start": "cd src/backend && node app.js"
   },
   "author": "selbekk <selbeezy@gmail.com>",
   "contributors": [
-    "helleroy <helleroy@gmail.com>"
+    "helleroy <helleroy@gmail.com>",
+    "leroise <roise88@gmail.com>"
   ],
   "license": "ISC",
   "dependencies": {
@@ -18,22 +18,26 @@
     "express": "^4.12.4",
     "express-handlebars": "^2.0.1",
     "moment": "^2.10.3",
-    "react": "^0.13.3",
     "request": "^2.55.0",
     "lodash": "^3.9.1"
   },
   "devDependencies": {
     "browserify": "~4.2.0",
-    "envify": "~1.2.1",
     "gulp": "~3.8.5",
+    "gulp-concat": "^2.5.2",
+    "gulp-declare": "^0.3.0",
+    "gulp-handlebars": "^4.0.0",
     "gulp-less": "^3.0.3",
-    "gulp-notify": "~1.4.0",
     "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
     "gulp-util": "~2.2.19",
+    "gulp-wrap": "^0.11.0",
+    "handlebars": "^3.0.3",
     "less-plugin-autoprefix": "^1.4.1",
     "less-plugin-clean-css": "^1.5.0",
-    "reactify": "~0.13.2",
-    "vinyl-source-stream": "~0.1.1",
-    "watchify": "~0.10.2"
+    "rename": "^1.0.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "~0.1.1"
   }
 }
