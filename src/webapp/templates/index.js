@@ -14,3 +14,12 @@ var Handlebars = require("handlebars");
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isRaining : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    <p class=\"weather-eta js-weather-eta\">We should have this fixed <span class=\"weather-eta-time js-time\"></span>.</p>\n</div>";
 },"useData":true});
+exports["generalError"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"weather error\">\n    <img src=\"/assets/img/error.png\" alt=\"Picture of shit.\" />\n    <h1>Shit.</h1>\n    <p><strong>We fucked up. Our bad.</strong></p>\n    <p>Check back later.</p>\n</div>";
+},"useData":true});
+exports["noLocation"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"weather error\">\n    <img src=\"/assets/img/no-location.png\" alt=\"No location.\" />\n    <h1>Sorry!</h1>\n    <p><strong>We don't know where you are.</strong></p>\n    <p>We hope it rains a lot though.</p>\n</div>";
+},"useData":true});
+exports["notSupported"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"weather error\">\n    <img src=\"/assets/img/not-supported.png\" alt=\"Picture of an old geezer, like you.\" />\n    <h1>Sorry!</h1>\n    <p><strong>We don't support old people.</strong></p>\n    <p>Come back when you have a proper browser.</p>\n</div>";
+},"useData":true});
