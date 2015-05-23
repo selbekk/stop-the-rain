@@ -4,8 +4,7 @@
   "description": "A webapp that will stop the rain for you.",
   "main": "app.js",
   "scripts": {
-    "build": "gulp",
-    "start": "cd src/backend && node app.js"
+    "start": "gulp build && cd src/backend && node app.js"
   },
   "author": "selbekk <selbeezy@gmail.com>",
   "contributors": [
