@@ -20,6 +20,9 @@ exports["generalError"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],
 exports["noLocation"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"weather error\">\n    <img src=\"/assets/img/no-location.png\" alt=\"No location.\" />\n    <h1>Sorry!</h1>\n    <p><strong>We don't know where you are.</strong></p>\n    <p>We hope it rains a lot though.</p>\n</div>";
 },"useData":true});
+exports["noNetwork"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"weather error\">\n    <img src=\"/assets/img/no-network.png\" alt=\"No interwebs!\" />\n    <h1>No internet!</h1>\n    <p><strong>We can't help you without the internet.</strong></p>\n    <p>We will still stop the rain, but it will take longer.</p>\n    <p>And that's your fault.</p>\n</div>";
+},"useData":true});
 exports["notSupported"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"weather error\">\n    <img src=\"/assets/img/not-supported.png\" alt=\"Picture of an old geezer, like you.\" />\n    <h1>Sorry!</h1>\n    <p><strong>We don't support old people.</strong></p>\n    <p>Come back when you have a proper browser.</p>\n</div>";
 },"useData":true});
