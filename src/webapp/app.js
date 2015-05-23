@@ -43,8 +43,8 @@ function weatherFetched(data) {
     }
 }
 
-function generalError() {
-    el.innerHTML = templates.generalError();
+function generalError(e) {
+    el.innerHTML = e.error === 'connection error' ? templates.noNetwork() : templates.generalError();
 }
 
 function stopTheRain() {

@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# 2015-05-23:v1
+
+/assets/favicon.ico
+/assets/scripts.min.js
+/assets/styles.min.css
+/assets/img/no-network.png
+
+CACHE:
+/assets/img/weather-no-idea-100.png
+/assets/img/weather-rain-100.png
+/assets/img/weather-sun-100.png
+/assets/img/error.png
+/assets/img/no-location.png
+
+NETWORK:
+*
