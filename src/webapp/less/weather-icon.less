@@ -4,6 +4,7 @@
     background: transparent center center no-repeat;
     background-size: contain;
     margin: 0 auto;
+    transition: all .5s ease-out;
 }
 
 .weather-icon.mod-rain {
@@ -20,6 +21,8 @@
 
 .weather-icon.is-waiting {
     animation: spin 8s linear infinite;
+    width: 110px;
+    height: 110px;
 }
 
 @keyframes spin {
