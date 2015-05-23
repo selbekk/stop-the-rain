@@ -2,15 +2,22 @@ var moment = require('moment');
 var templates = require('./templates'),
     ajax = require('./util/ajax');
 
-var el = document.getElementById('app');
-var lastPosition;
+var el, lastPosition;
 
-el.innerHTML = templates.app({
-    headline: 'checking the weather...',
-    weatherClass: 'mod-unknown'
-});
+init();
+function init() {
+    el = document.getElementById('app');
+    if(!navigator.geolocation) {
+        el.innerHTML = templates.notSupported();
+        return;
+    }
 
-navigator.geolocation.getCurrentPosition(positionAcquired, positionFailure);
+    el.innerHTML = templates.app({
+        headline: 'checking the weather...',
+        weatherClass: 'mod-unknown'
+    });
+    navigator.geolocation.getCurrentPosition(positionAcquired, positionFailure);
+}
 
 function positionAcquired(position) {
     lastPosition = position;
@@ -19,7 +26,7 @@ function positionAcquired(position) {
 }
 
 function positionFailure() {
-    console.error('no weather for you!');
+    el.innerHTML = templates.noLocation();
 }
 
 function weatherFetched(data) {
@@ -35,8 +42,8 @@ function weatherFetched(data) {
     }
 }
 
-function generalError(error) {
-    console.error(error);
+function generalError() {
+    el.innerHTML = templates.generalError();
 }
 
 function stopTheRain() {
