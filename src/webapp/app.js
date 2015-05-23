@@ -6,7 +6,7 @@ var el = document.getElementById('app');
 var lastPosition;
 
 el.innerHTML = templates.app({
-    headline: 'checking the weather...',
+    headline: 'Checking the weather...',
     weatherClass: 'mod-unknown'
 });
 
@@ -24,7 +24,7 @@ function positionFailure() {
 
 function weatherFetched(data) {
     el.innerHTML = templates.app({
-        headline: data.isRaining ? 'Ah shucks...' : 'Enjoy!',
+        headline: data.place.name + ', ' + data.place.country,
         isRaining: data.isRaining,
         weather: data.weather,
         weatherClass: data.isRaining ? 'mod-rain' : 'mod-sun'
