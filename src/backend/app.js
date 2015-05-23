@@ -21,5 +21,5 @@ app.get('/', function(req, res, next) {
 app.use('/api', apiRouter);
 
 app.listen(app.get('port'), function() {
-    log.info('server launched @ localhost:4000');
+    log.info('server launched @ localhost:' + app.get('port'));
 });
