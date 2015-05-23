@@ -19,11 +19,10 @@ function positionAcquired(position) {
 }
 
 function positionFailure() {
-    console.error('no weather for you');
+    console.error('no weather for you!');
 }
 
 function weatherFetched(data) {
-    data.isRaining = true;
     el.innerHTML = templates.app({
         headline: data.isRaining ? 'Ah shucks...' : 'Enjoy!',
         isRaining: data.isRaining,
@@ -47,7 +46,7 @@ function stopTheRain() {
     icon.classList.add('is-waiting');
 
     var url = '/api/order-sun?lat=' + lastPosition.coords.latitude + '&lng=' + lastPosition.coords.longitude;
-    ajax.getJSON(url, handleOrdered, handleOrderFailed);
+    ajax.getJSON(url, handleOrdered, generalError);
 
     var button = el.querySelector('.js-stop-the-rain');
     button.removeEventListener('click', stopTheRain);
@@ -66,8 +65,4 @@ function handleOrdered(data) {
     function updateTime() {
         time.innerHTML = moment(data.eta).toNow();
     }
-}
-
-function handleOrderFailed(error) {
-    console.error(error);
 }
