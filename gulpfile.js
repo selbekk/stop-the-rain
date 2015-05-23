@@ -10,13 +10,10 @@ var browserify = require('browserify'),
 		minify: require('less-plugin-clean-css'),
 		prefix: require('less-plugin-autoprefix')
 	},
-	notify = require("gulp-notify"),
 	plumber = require('gulp-plumber'),
-	reactify = require('reactify'),
 	rename = require('gulp-rename'),
 	source = require('vinyl-source-stream'),
 	uglify = require('gulp-uglify'),
-	watchify = require('watchify'),
 	wrap = require('gulp-wrap');
 
 gulp.task('style', function() {
