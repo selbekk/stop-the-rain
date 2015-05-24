@@ -1,3 +1,4 @@
+var _ = require('lodash');
 
 exports.etaRainStop = function(data){
 
