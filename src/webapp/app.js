@@ -62,7 +62,6 @@ function stopTheRain() {
 }
 
 function handleOrdered(data) {
-
     var eta = el.querySelector('.js-weather-eta');
     eta.classList.add('is-showing');
 
@@ -71,6 +70,6 @@ function handleOrdered(data) {
     setInterval(updateTime, 1000);
 
     function updateTime() {
-        time.innerHTML = moment(data.eta).toNow();
+        time.innerHTML = moment(data.eta).fromNow();
     }
 }
