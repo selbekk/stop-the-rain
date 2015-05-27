@@ -11,6 +11,7 @@ var babelify = require('babelify'),
 		minify: require('less-plugin-clean-css'),
 		prefix: require('less-plugin-autoprefix')
 	},
+	manifest = require('gulp-manifest'),
 	plumber = require('gulp-plumber'),
 	rename = require('gulp-rename'),
 	source = require('vinyl-source-stream'),
@@ -56,7 +57,20 @@ gulp.task('template', function() {
 		.pipe(gulp.dest('src/webapp/templates'));
 });
 
-gulp.task('build', ['template', 'style', 'script']);
+gulp.task('manifest', function() {
+	gulp.src(['src/webapp/public/**'])
+    .pipe(manifest({
+      prefix: 'assets/',
+      hash: true,
+      preferOnline: true,
+      network: ['*'],
+      filename: 'manifest.mf',
+      exclude: 'manifest.mf'
+     }))
+    .pipe(gulp.dest('src/webapp/public'));
+});
+
+gulp.task('build', ['manifest', 'template', 'style', 'script']);
 
 gulp.task('watch', function() {
 	gutil.log('watching for changes...');
