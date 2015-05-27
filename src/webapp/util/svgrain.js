@@ -21,6 +21,4 @@ function rNoise(lmin, lmax, rmax) {
 }
 
 rNoise(3500, 10000, 14);
-setInterval(function() {
-    rNoise(3500, 7000, 14);
-}, 5000);
+setInterval(() => rNoise(3500, 7000, 14), 5000);
