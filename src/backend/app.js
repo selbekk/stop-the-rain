@@ -14,7 +14,7 @@ app.set('port', process.env.PORT || 4000);
 app.use('/assets', express.static('../webapp/public'));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res, next) {
+app.get('/', function(req, res) {
     res.render('index');
 });
 
