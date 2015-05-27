@@ -23,6 +23,7 @@
     "snapsvg": "^0.4.0"
   },
   "devDependencies": {
+    "babelify": "^6.1.2",
     "browserify": "~4.2.0",
     "envify": "~1.2.1",
     "gulp": "~3.8.5",

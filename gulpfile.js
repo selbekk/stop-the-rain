@@ -1,4 +1,5 @@
-var browserify = require('browserify'),
+var babelify = require('babelify'),
+    browserify = require('browserify'),
 	buffer = require('vinyl-buffer'),
 	concat = require('gulp-concat'),
 	declare = require('gulp-declare'),
@@ -33,6 +34,7 @@ gulp.task('style', function() {
 gulp.task('script', function() {
 	gutil.log('compiling scripts...');
 	return browserify('./src/webapp/app.js')
+        .transform(babelify)
 		.bundle()
 		.pipe(source('scripts.min.js'))
 		.pipe(buffer())
