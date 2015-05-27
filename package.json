@@ -6,6 +6,7 @@
   "scripts": {
     "start": "cd src/backend && node app.js"
   },
+  "repository" : "https://github.com/selbekk/stop-the-rain.git",
   "author": "selbekk <selbeezy@gmail.com>",
   "contributors": [
     "helleroy <helleroy@gmail.com>",
@@ -31,6 +32,7 @@
     "gulp-declare": "^0.3.0",
     "gulp-handlebars": "^4.0.0",
     "gulp-less": "^3.0.3",
+    "gulp-manifest": "veiset/gulp-manifest",
     "gulp-notify": "~1.4.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
