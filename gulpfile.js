@@ -60,7 +60,6 @@ gulp.task('template', function() {
 gulp.task('manifest', function() {
 	gulp.src(['src/webapp/public/**'])
     .pipe(manifest({
-      prefix: 'assets/',
       hash: true,
       preferOnline: true,
       network: ['*'],
