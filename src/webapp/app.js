@@ -1,6 +1,7 @@
 var moment = require('moment');
 var templates = require('./templates'),
     ajax = require('./util/ajax');
+require('./util/svgrain');
 
 var el, lastPosition;
 
@@ -40,6 +41,7 @@ function weatherFetched(data) {
 
     if(data.isRaining) {
         el.querySelector('.js-stop-the-rain').addEventListener('click', stopTheRain);
+        document.getElementById('svg').classList.add('is-raining');
     }
 }
 
@@ -52,6 +54,7 @@ function stopTheRain() {
     icon.classList.remove('mod-rain');
     icon.classList.add('mod-sun');
     icon.classList.add('is-waiting');
+    document.getElementById('svg').classList.remove('is-raining');
 
     var url = '/api/order-sun?lat=' + lastPosition.coords.latitude + '&lng=' + lastPosition.coords.longitude;
     ajax.getJSON(url, handleOrdered, generalError);

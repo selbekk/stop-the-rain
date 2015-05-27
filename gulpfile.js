@@ -60,7 +60,7 @@ gulp.task('watch', function() {
 	gutil.log('watching for changes...');
 	gulp.watch('src/webapp/less/*.less', ['style']);
 	gulp.watch('src/webapp/templates/*.handlebars', ['template', 'script']);
-	gulp.watch('src/webapp/*.js', ['script']);
+	gulp.watch('src/webapp/**.js', ['script']);
 });
 
 gulp.task('default', ['build', 'watch']);
