@@ -45,7 +45,7 @@ gulp.task('script', function() {
 
 gulp.task('template', function() {
 	gutil.log('compiling templates...');
-	gulp.src('src/webapp/templates/*.handlebars')
+	gulp.src('src/webapp/templates/**/*.handlebars')
 		.pipe(handlebars())
 		.pipe(wrap('Handlebars.template(<%= contents %>)'))
 		.pipe(declare({

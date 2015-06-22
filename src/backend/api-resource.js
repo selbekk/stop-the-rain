@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var dao = require('./weather-dao');
 var Position = require('./position');
-var WeatherHelper = require('./weather-helper');
+var weatherHelper = require('./weather-helper');
 
 exports.orderSun = function(req, res, next) {
     var pos = new Position({ lat: req.query.lat, lng: req.query.lng });
@@ -13,7 +13,7 @@ exports.orderSun = function(req, res, next) {
             return next();
         }
 
-        res.status(201).json({eta: WeatherHelper.etaRainStop(data) });
+        res.status(201).json({eta: weatherHelper.etaRainStop(data) });
     });
 };
 
@@ -28,7 +28,7 @@ exports.timeUntilRain = function(req, res, next){
             return next();
         }
 
-        res.status(201).json({eta: WeatherHelper.etaRainStart(data) });
+        res.status(201).json({eta: weatherHelper.etaRainStart(data) });
     });
 };
 
@@ -44,9 +44,11 @@ exports.getWeather = function(req, res, next) {
             return next();
         }
 
+        var weather = weatherHelper.resolveCode(result.weather[0].id);
         res.status(200).json({
-            weather: result.weather[0].main,
-            isRaining: result.weather[0].main.toLowerCase().indexOf('rain') > -1,
+            weather: weather,
+            description: result.weather[0].description,
+            isRaining: weather === 'rainy',
             place: {
                 name: result.name,
                 country: result.sys.country
