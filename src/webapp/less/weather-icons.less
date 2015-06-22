@@ -1,0 +1,227 @@
+/*
+    These icons have been taken from http://codepen.io/joshbader/pen/EjXgqr,
+    only modified by changing a few class names and formatting.
+*/
+
+.icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10rem;
+    position: relative;
+    width: 12rem;
+    background-color: @bg-color;
+    color: @bg-color;
+}
+
+.icon-cloud {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    margin: -1.84375rem;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow:
+        -2.1875rem 0.6875rem 0 -0.6875rem,
+        2.0625rem 0.9375rem 0 -0.9375rem,
+        0 0 0 0.375rem @icon-outline-color,
+        -2.1875rem 0.6875rem 0 -0.3125rem @icon-outline-color,
+        2.0625rem 0.9375rem 0 -0.5625rem @icon-outline-color;
+}
+
+.icon-cloud:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -0.5rem;
+    display: block;
+    width: 4.5625rem;
+    height: 1rem;
+    background: currentColor;
+    box-shadow: 0 0.375rem @icon-outline-color;
+}
+
+.icon-cloud:nth-child(2) {
+    z-index: 0;
+    background: @icon-outline-color;
+    box-shadow:
+        -2.1875rem 0.6875rem 0 -0.6875rem @icon-outline-color,
+        2.0625rem 0.9375rem 0 -0.9375rem @icon-outline-color,
+        0 0 0 0.375rem @icon-outline-color,
+        -2.1875rem 0.6875rem 0 -0.3125rem @icon-outline-color,
+        2.0625rem 0.9375rem 0 -0.5625rem @icon-outline-color;
+    opacity: 0.3;
+    transform: scale(0.5) translate(6rem, -3rem);
+    animation: cloud 4s linear infinite;
+}
+
+.icon-cloud:nth-child(2):after { background: @icon-outline-color; }
+
+.icon-sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: -1.25rem;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.375rem @icon-outline-color;
+    animation: spin 12s infinite linear;
+}
+.icon-sun-rays {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    display: block;
+    width: 0.375rem;
+    height: 1.125rem;
+    margin-left: -0.1875rem;
+    background: @icon-outline-color;
+    border-radius: 0.25rem;
+    box-shadow: 0 5.375rem @icon-outline-color;
+}
+.icon-sun-rays:before,
+.icon-sun-rays:after {
+    content: '';
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    display: block;
+    width: 0.375rem;
+    height: 1.125rem;
+    transform: rotate(60deg);
+    transform-origin: 50% 3.25rem;
+    background: @icon-outline-color;
+    border-radius: 0.25rem;
+    box-shadow: 0 5.375rem @icon-outline-color;
+}
+.icon .icon-sun-rays:before {
+    transform: rotate(120deg);
+}
+.icon-cloud + .icon-sun {
+    margin: -2rem 1rem;
+}
+
+.icon-rain,
+.icon-lightning,
+.icon-snow {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin: 0.375rem 0 0 -2rem;
+    background: currentColor;
+}
+
+.icon-rain:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: -1rem 0 0 -0.25rem;
+    background: #0cf;
+    border-radius: 100% 0 60% 50% / 60% 0 100% 50%;
+    box-shadow:
+        0.625rem 0.875rem 0 -0.125rem rgba(255,255,255,0.2),
+        -0.875rem 1.125rem 0 -0.125rem rgba(255,255,255,0.2),
+        -1.375rem -0.125rem 0 rgba(255,255,255,0.2);
+    transform: rotate(-28deg);
+    animation: rain 3s linear infinite;
+}
+
+.icon-lightning-bolt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 0.5rem;
+    margin: -0.875rem 0 0 -0.5rem;
+    color: @icon-outline-color;
+    background: @icon-outline-color;
+    opacity: 0.3;
+    animation: lightning 2s linear infinite;
+}
+.icon-lightning-bolt:nth-child(2) {
+    width: 0.5rem;
+    height: 0.25rem;
+    margin: -1.875rem 0 0 -1.5rem;
+    transform: translate(2.5rem, 2.25rem);
+    opacity: 0.2;
+    animation: lightning 1.5s linear infinite;
+}
+.icon-lightning-bolt:before,
+.icon-lightning-bolt:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin: -1.75rem 0 0 -1.25rem;
+    border-top: 1.25rem solid transparent;
+    border-right: 0.75rem solid;
+    border-bottom: 0.75rem solid;
+    border-left: 0.5rem solid transparent;
+    transform: skewX(-10deg);
+}
+.icon-lightning-bolt:after {
+    margin: -0.25rem 0 0 -0.0125rem;
+    border-top: 0.75rem solid;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 1.25rem solid transparent;
+    border-left: 0.75rem solid;
+    transform: skewX(-10deg);
+}
+.icon-lightning-bolt:nth-child(2):before {
+    margin: -0.875rem 0 0 -0.75rem;
+    border-top: 0.625rem solid transparent;
+    border-right: 0.375rem solid;
+    border-bottom: 0.375rem solid;
+    border-left: 0.25rem solid transparent;
+}
+.icon-lightning-bolt:nth-child(2):after {
+    margin: -0.125rem 0 0 0;
+    border-top: 0.375rem solid;
+    border-right: 0.25rem solid transparent;
+    border-bottom: 0.625rem solid transparent;
+    border-left: 0.375rem solid;
+}
+
+.icon-snow-flake:before,
+.icon-snow-flake:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.25rem 0 0 -1.25rem;
+    content: '\2744';
+    color: @icon-outline-color;
+    list-height: 1em;
+    opacity: 0.2;
+    animation: spin 8s linear infinite reverse;
+}
+.icon-snow-flake:after {
+    margin: -0.125rem 0 0 -1.375rem;
+    font-size: 1.5rem;
+    opacity: 0.4;
+    animation: spin 14s linear infinite;
+}
+.icon-snow-flake:nth-child(2):before {
+    margin: -0.875rem 0 0 0.25rem;
+    font-size: 1.25rem;
+    opacity: 0.2;
+    animation: spin 10s linear infinite;
+}
+.icon-snow-flake:nth-child(2):after {
+    margin: 0.5rem 0 0 0.125rem;
+    font-size: 2rem;
+    opacity: 0.4;
+    animation: spin 16s linear infinite reverse;
+}

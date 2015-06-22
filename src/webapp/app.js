@@ -1,12 +1,10 @@
 var moment = require('moment');
 var templates = require('./templates'),
     ajax = require('./util/ajax');
-require('./util/svgrain');
+    require('./util/svgrain');
 
 var el, lastPosition;
 
-
-init();
 function init() {
     el = document.getElementById('app');
     if(!navigator.geolocation) {
@@ -35,8 +33,8 @@ function weatherFetched(data) {
     el.innerHTML = templates.app({
         headline: data.place.name + ', ' + data.place.country,
         isRaining: data.isRaining,
-        weather: data.weather,
-        weatherClass: data.isRaining ? 'mod-rain' : 'mod-sun'
+        weather: data.description,
+        iconHtml: templates[data.weather]()
     });
 
     if(data.isRaining) {
@@ -50,10 +48,10 @@ function generalError(e) {
 }
 
 function stopTheRain() {
-    var icon = el.querySelector('.weather-icon');
-    icon.classList.remove('mod-rain');
-    icon.classList.add('mod-sun');
-    icon.classList.add('is-waiting');
+
+    var iconContainer = el.querySelector('.weather-icon-container');
+    iconContainer.innerHTML = templates.sunny();
+
     document.getElementById('svg').classList.remove('is-raining');
 
     var url = '/api/order-sun?lat=' + lastPosition.coords.latitude + '&lng=' + lastPosition.coords.longitude;
@@ -76,3 +74,5 @@ function handleOrdered(data) {
         time.innerHTML = moment(data.eta).fromNow();
     }
 }
+
+document.addEventListener('DOMContentLoaded', init);
